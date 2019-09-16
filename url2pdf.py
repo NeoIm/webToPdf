@@ -1,10 +1,11 @@
-import requests
-import lxml
+# import requests
 import configparser
+import re
+import time
 
 import pdfkit
 
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
 class PdfDownloader:
 
@@ -12,10 +13,15 @@ class PdfDownloader:
     def main(self):
         self.read_config()
         urls = self.read_urls()
+        count = 0
         for url in urls:
+            count += 1
+            print(count)
             print("downloading: ", url)
+            # file_name = self.get_website_title(url)
             file_name = self.get_file_name(url)
             self.download_pdf(url, file_name)
+
 
     """
     读取配置文件
@@ -54,22 +60,39 @@ class PdfDownloader:
     获取网页标题
     因为是一个单独功能的函数，没有用到类的成员变量，所以定义成了静态方法
     """
+    # @staticmethod
+    # def get_website_title(url):
+    #     headers = {
+    #         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+    #                       ' AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36',
+    #     }
+    #     response = requests.get(url=url, headers=headers)
+    #     html = response.text
+    #     # print(html)
+    #     soup = BeautifulSoup(html, 'lxml')
+    #     title_raw = soup.title
+    #     # print(title_raw)
+    #     title = title_raw.get_text()
+    #     title.replace('\r', '').replace('\n', ' ')
+    #     print("file name: ", title)
+    #     return title
+
+    """
+    获取网页标题不稳定，故截取 url 的部分作为文件名
+    """
     @staticmethod
     def get_file_name(url):
-        response = requests.get(url=url)
-        html = response.text
-        # print(html)
-        soup = BeautifulSoup(html, 'lxml')
-        title_raw = soup.title
-        title = title_raw.get_text()
-        title.replace('\t', '').replace('\n', ' ')
-        print("file name: ", title)
-        return title
+        pattern = re.compile("\w+.html$")
+        name = pattern.search(url)
+        if name is None:
+            name = time.time()
+        else:
+            name = name.group()[:-5]
+        return name
 
 
 if __name__ == "__main__":
     pdf = PdfDownloader()
-    pdf.main()
-    # pdf.read_config()
-    # pdf.download_pdf("https://pnp.mathematik.uni-stuttgart.de/iadm/Weidl/analysis2/vorlesung-ana2/node4.html", "test.pdf")
-
+    # pdf.main()
+    r = pdf.get_file_name("https://pnp.mathematik.uni-stuttgart.de/iadm/Weidl/analysis2/vorlesung-ana2/node4.html")
+    print(r)

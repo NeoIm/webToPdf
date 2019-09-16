@@ -7,15 +7,15 @@
 ```
 pip install pdfkit
 pip install wkhtmltopdf
-pip install beautifulsoup4
+...
 ```
 
-2. 修改配置文件  
-    将各种文件路径填入 config.ini 中，详见下文说明  
+2. 修改配置文件
+    将各种文件路径填入 config.ini 中，详见下文说明
     另外需要预先准备一个文本文件，存放需要下载的 url，每行一个链接
 
-3. 运行程序  
-    `python url2pdf.py`
+3. 运行程序
+    python url2pdf.py
 
 ### 配置文件说明
 分为 2 个 section
@@ -30,26 +30,15 @@ pip install beautifulsoup4
 ### 环境
 关于这些包，可以直接搜索，中英文资料应该都很多，这里只是简单介绍
 
-1. wkhtmltox  
-一个第三方库，是 pdf 操作的底层依赖，平台相关，下面这个网址找到合适的版本，并放到合适的位置  
-[官网](https://wkhtmltopdf.org/downloads.html)  
+1. wkhtmltox
+一个第三方库，是 pdf 操作的底层依赖，平台相关，下面这个网址找到合适的版本，并放到合适的位置
+[官网](https://wkhtmltopdf.org/downloads.html)
 [博文](https://www.cnblogs.com/xiaowenshu/p/9916719.html)
 
-2. pdfkit  
+2. pdfkit
 wkhtmltox 的封装包
 
-3. requests  
-进行网络访问的包，常用于爬虫  
-get 方法，获取指定 URL 的 html 文本
-
-3. BeautifulSoup  
-用于解析 html 的包，很强大，可以提取 html 文本中的指定内容  
-本项目用于获取指定网页的标题
-
-4. lxml  
-搭配 BeautifulSoup 使用的 xml 解析
-
-5. configparser  
-读取配置文件的 build-in 包  
+3. configparser
+读取配置文件的包
 [博文](https://www.cnblogs.com/lhly/p/8066898.html)
 
