@@ -93,6 +93,6 @@ class PdfDownloader:
 
 if __name__ == "__main__":
     pdf = PdfDownloader()
-    # pdf.main()
-    r = pdf.get_file_name("https://pnp.mathematik.uni-stuttgart.de/iadm/Weidl/analysis2/vorlesung-ana2/node4.html")
-    print(r)
+    pdf.main()
+    # r = pdf.get_file_name("https://pnp.mathematik.uni-stuttgart.de/iadm/Weidl/analysis2/vorlesung-ana2/node4.html")
+    # print(r)
