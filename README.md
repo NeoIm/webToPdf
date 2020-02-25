@@ -13,6 +13,7 @@
     pip install wkhtmltopdf
     ...
     ```
+    **Tips：只用合并pdf功能，则只需要pip安装PyPDF2，且不用管配置文件**
 
 2. 修改配置文件
     将各种文件路径填入 config.ini 中，详见下文说明
